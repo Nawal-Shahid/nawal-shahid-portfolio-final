@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cadet-grey: #959BB5;
+  --color-chinese-black: #0A1123;
+  --color-american-blue: #3A3E6C;
+  --color-ube: #8387C3;
+  --color-cool-grey: #8A8CAC;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  @media (min-width: 768px) {
+    body {
+      cursor: none;
+    }
+    a, button, input, textarea, [role="button"] {
+      cursor: none !important;
+    }
+  }
+
+  body {
+    @apply bg-chinese-black text-cadet-grey selection:bg-ube/30 selection:text-white transition-colors duration-500;
+  }
+
+  /* Ensure text visibility */
+  .text-white {
+    @apply text-white;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-chinese-black;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-american-blue rounded-full hover:bg-ube transition-colors;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-chinese-black/40 backdrop-blur-md border border-white/10;
+  }
+  
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-ube to-cadet-grey;
+  }
+}
+
+/* Hide default cursor on interactive elements too */
+/* Handled in @layer base media query */
