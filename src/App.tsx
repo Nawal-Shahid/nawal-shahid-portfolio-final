@@ -448,7 +448,7 @@ const Projects = () => {
       title: 'DigiLex - Multilingual Accessible Learning Platform',
       category: 'EdTech Platform',
       tech: 'React Native, Expo, Firebase, Node.js, Firestore',
-      description: 'Cross-platform mobile learning platform supporting individuals with dyslexia through interactive, gamified, and accessible educational experiences in Urdu, English, and Arabic. Features personalized adaptive learning paths, interactive reading/writing modules with text-to-speech and speech-to-text, gamified reward system with badges and daily streaks, cognitive skill-building exercises, dyslexia-friendly fonts with customizable colors and spacing, progress tracking dashboards for learners/parents/teachers, offline accessibility with sync, and inclusive UI with simple navigation and high-contrast design.',
+      description: 'Cross-platform dyslexia learning platform in Urdu, English, Arabic. Features adaptive learning paths, interactive reading/writing with text-to-speech/speech-to-text, gamified rewards (badges, streaks), cognitive exercises, dyslexia-friendly fonts (custom colors/spacing), progress dashboards for learners/parents/teachers, offline sync, and inclusive high-contrast UI.',
       image: '/Digilex.png',
       link: '#'
     },
@@ -456,7 +456,7 @@ const Projects = () => {
       title: 'News Classifier - Advanced Classification System',
       category: 'Machine Learning',
       tech: 'Python, scikit-learn, Streamlit, TextBlob, LLM, NLP, Pandas & NumPy',
-      description: 'Production-ready news classifier for 5 categories (Business, Entertainment, Politics, Sports, Technology) on 40,000+ BBC articles. Achieved 93.1% accuracy with ensemble of Naive Bayes, SVM, and Random Forest. Added real-time sentiment analysis using TextBlob. Developed interactive Streamlit dashboard with URL input, dataset upload, word clouds, probability histograms, and downloadable CSV. Automated URL extraction & preprocessing with per-prediction explainability (feature importance, class probability).',
+      description: 'Production-ready news classifier for 5 categories (Business, Entertainment, Politics, Sports, Technology) on 40k+ BBC articles. Achieved 93.1% accuracy via Naive Bayes, SVM, Random Forest ensemble. Added TextBlob sentiment analysis. Built Streamlit dashboard with URL input, word clouds, probability histograms, CSV export, and per-prediction explainability.',
       image: '/News_Classification.png',
       link: 'https://github.com/Nawal-Shahid/news_classifier?tab=readme-ov-file'
     },
