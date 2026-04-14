@@ -472,7 +472,7 @@ const Projects = () => {
       title: 'Movie Discovery - Full Stack Application',
       category: 'Full Stack',
       tech: 'React, Node.js, Express, Kotlin, Firebase, JWT, REST APIs',
-      description: 'Full-stack movie platform with React frontend, Node.js/Express backend, and Android app. Backend provides RESTful APIs to fetch movies from TheMovieDB with pagination, caching, and response optimization. Manages user favorites, watchlists, and authentication using Firebase Admin SDK and JWT validation. React web frontend allows browsing, filtering by genre, searching, viewing cast/crew details, and managing favorites. Android app built with MVVM, Material 3, Room database for offline favorites, Retrofit, and Firebase Auth. Both frontends sync user data across platforms with lazy loading, client-side caching, responsive layouts, and secure authentication flows.',
+      description: 'Full-stack movie platform with React frontend, Node.js/Express backend, and Android app. Backend provides RESTful APIs to fetch movies from TheMovieDB with pagination, caching, and response optimization. Manages user favorites, watchlists, and authentication using Firebase Admin SDK and JWT validation. React web frontend allows browsing, filtering by genre, searching, viewing cast/crew details, and managing favorites.',
       image: '/movie_explorer_website.png',
       link: 'https://github.com/Nawal-Shahid/movie-explorer-website?tab=readme-ov-file'
     }
@@ -554,7 +554,7 @@ const Skills = () => {
     {
       title: 'Backend',
       icon: <Database size={20} />,
-      skills: ['Node.js', 'Express.js', 'Nest.js', 'RESTful APIs', 'GraphQL', 'Apollo Server', 'WebSockets', 'Socket.io', 'MongoDB', 'Mongoose', 'Firebase Firestore', 'Firebase Realtime DB', 'PostgreSQL', 'MySQL', 'SQLite', 'MS SQL Server', 'JWT', 'OAuth2', 'Passport.js', 'Firebase Auth', 'Auth0', 'Session Management', 'Cloud Functions', 'Serverless', 'Sequelize', 'TypeORM', 'API Rate Limiting', 'Error Handling']
+      skills: ['Node.js', 'Express.js', 'Nest.js', 'RESTful APIs', 'GraphQL', 'Apollo Server', 'WebSockets', 'Socket.io', 'MongoDB', 'Firebase Realtime DB', 'PostgreSQL', 'MySQL', 'SQLite', 'MS SQL Server', 'JWT', 'Firebase Auth', 'Auth0', 'Session Management', 'Cloud Functions', 'Serverless', 'Sequelize', 'TypeORM', 'API Rate Limiting', 'Error Handling']
     },
     {
       title: 'Mobile & Cross-Platform',
