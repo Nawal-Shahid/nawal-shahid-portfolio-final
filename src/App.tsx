@@ -584,7 +584,7 @@ const Skills = () => {
     {
       title: 'Specializations',
       icon: <Globe size={20} />,
-      skills: ['SEO & Technical SEO', 'Web Accessibility (WCAG 2.1)', 'Performance Optimization', 'Lazy Loading', 'Code Splitting', 'Bundle Optimization', 'Screen Reader Compatibility', 'Keyboard Navigation', 'ARIA Attributes', 'API Documentation', 'Code Review', 'Pair Programming', 'Software Architecture', 'System Design', 'Design Patterns', 'SOLID Principles', 'Clean Code', 'Refactoring', 'Agile/Scrum', 'Git Flow', 'Open Source']
+      skills: ['SEO & Technical SEO', 'Web Accessibility (WCAG 2.1)', 'Performance Optimization', 'Lazy Loading', 'Code Splitting', 'Screen Reader Compatibility', 'API Documentation', 'Code Review', 'Pair Programming', 'Software Architecture', 'System Design', 'Design Patterns', 'Refactoring', 'Agile/Scrum', 'Git Flow']
     }
   ];
 
