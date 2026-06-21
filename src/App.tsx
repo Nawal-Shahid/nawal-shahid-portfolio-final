@@ -94,7 +94,7 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navItems = ['About', 'Experience', 'Projects', 'Skills', 'Contact'];
+  const navItems = ['About', 'Experience', 'Projects', 'Certifications', 'Skills', 'Contact'];
 
   return (
     <>
@@ -442,8 +442,219 @@ const Experience = () => {
   );
 };
 
+const Certifications = () => {
+  const certifications = [
+    {
+      image: '/GOOGLE_CYBERSECURITY_PROFESSIONAL_CERTIFICATE.jpg',
+      title: 'Google Cybersecurity Professional Certificate',
+      description: 'Comprehensive cybersecurity skills including network security, incident response, risk management, security operations, and hands-on experience with industry-standard tools.'
+    },
+    {
+      image: '/Foundation_of_UX_CERTIFICATE.jpg',
+      title: 'Google Foundation of UX Design',
+      description: 'Core principles of user experience design covering user research, wireframing, prototyping, and usability testing to create intuitive, user-centered digital products.'
+    },
+    {
+      image: '/Certificate_Technical_Support_Fundamentals.jpg',
+      title: 'Google Technical Support Fundamentals',
+      description: 'Foundational knowledge in technical support, including troubleshooting methodologies, customer service best practices, networking, operating systems, and system administration.'
+    }
+  ];
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const [isPaused, setIsPaused] = useState(false);
+  const intervalRef = useRef<number | null>(null);
+
+  const startAutoPlay = () => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    intervalRef.current = window.setInterval(() => {
+      setDirection(1);
+      setCurrentIndex((prev) => (prev + 1) % certifications.length);
+    }, 4000);
+  };
+
+  useEffect(() => {
+    if (!isPaused) startAutoPlay();
+    else if (intervalRef.current) clearInterval(intervalRef.current);
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [isPaused, currentIndex]);
+
+  const goToSlide = (index: number) => {
+    setDirection(index > currentIndex ? 1 : -1);
+    setCurrentIndex(index);
+  };
+
+  const goNext = () => {
+    setDirection(1);
+    setCurrentIndex((prev) => (prev + 1) % certifications.length);
+  };
+
+  const goPrev = () => {
+    setDirection(-1);
+    setCurrentIndex((prev) => (prev - 1 + certifications.length) % certifications.length);
+  };
+
+  const slideVariants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? 300 : -300,
+      opacity: 0,
+      scale: 0.95,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      scale: 1,
+    },
+    exit: (direction: number) => ({
+      x: direction > 0 ? -300 : 300,
+      opacity: 0,
+      scale: 0.95,
+    }),
+  };
+
+  return (
+    <section id="certifications" className="py-24 px-6">
+      <div className="max-w-5xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-display font-bold text-white mb-4">
+            Certifications
+          </h2>
+          <div className="w-20 h-1 bg-ube rounded-full mx-auto" />
+          <p className="mt-4 text-cadet-grey max-w-lg mx-auto">
+            Professional certifications demonstrating expertise across cloud computing, data analytics, and development.
+          </p>
+        </div>
+
+        <div 
+          className="relative"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          {/* Main Slideshow */}
+          <div className="relative overflow-hidden rounded-3xl bg-american-blue/10 border border-ube/10">
+            <div className="aspect-[16/9] md:aspect-[21/9] relative">
+              <AnimatePresence custom={direction} mode="popLayout">
+                <motion.div
+                  key={currentIndex}
+                  custom={direction}
+                  variants={slideVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{
+                    x: { type: 'spring', stiffness: 300, damping: 30 },
+                    opacity: { duration: 0.4 },
+                    scale: { duration: 0.4 },
+                  }}
+                  className="absolute inset-0 flex items-center justify-center"
+                >
+                  {certifications[currentIndex].image ? (
+                    <img
+                      src={certifications[currentIndex].image}
+                      alt={certifications[currentIndex].title}
+                      className="w-full h-full object-contain p-4 md:p-8"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                        const parent = target.parentElement;
+                        if (parent) {
+                          const placeholder = document.createElement('div');
+                          placeholder.className = 'flex items-center justify-center w-full h-full';
+                          placeholder.innerHTML = `
+                            <div class="flex flex-col items-center gap-4">
+                              <svg class="w-16 h-16 text-ube/40" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                              </svg>
+                              <span class="text-ube/40 text-sm font-mono">Certificate Preview</span>
+                            </div>
+                          `;
+                          parent.appendChild(placeholder);
+                        }
+                      }}
+                    />
+                  ) : (
+                    <div className="flex flex-col items-center justify-center gap-4 text-ube/40">
+                      <svg className="w-16 h-16" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                      <span className="text-sm font-mono">Certificate Preview</span>
+                    </div>
+                  )}
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Navigation Arrows */}
+              <button
+                onClick={goPrev}
+                className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-chinese-black/80 border border-ube/20 text-ube flex items-center justify-center hover:bg-ube hover:text-chinese-black transition-all backdrop-blur-sm"
+                aria-label="Previous"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button
+                onClick={goNext}
+                className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-chinese-black/80 border border-ube/20 text-ube flex items-center justify-center hover:bg-ube hover:text-chinese-black transition-all backdrop-blur-sm"
+                aria-label="Next"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Caption */}
+            <motion.div
+              key={currentIndex + '-caption'}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="px-6 md:px-10 pb-6 md:pb-8 pt-4"
+            >
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-1">
+                {certifications[currentIndex].title}
+              </h3>
+              <p className="text-cadet-grey text-sm md:text-base">
+                {certifications[currentIndex].description}
+              </p>
+            </motion.div>
+          </div>
+
+          {/* Dot Navigation */}
+          <div className="flex justify-center gap-3 mt-6">
+            {certifications.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                  index === currentIndex
+                    ? 'bg-ube w-8'
+                    : 'bg-ube/30 hover:bg-ube/50'
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const Projects = () => {
   const projects = [
+    {
+      title: 'AI Study Brain - Intelligent Document Q&A System',
+      category: 'AI / RAG Platform',
+      tech: 'Python, Streamlit, FAISS, Sentence-Transformers, Groq API, PyPDF, NumPy',
+      description: 'Retrieval-Augmented Generation (RAG) application that allows users to upload PDF documents and ask questions about their content. Transforms static documents into an intelligent knowledge base by extracting text, splitting it into semantic chunks, generating embeddings, and using vector similarity search to retrieve relevant context for LLM-based question answering.',
+      image: '/AI_Study_Brain.gif',
+      link: 'https://github.com/Nawal-Shahid/AI-Brain/'
+    },
     {
       title: 'DigiLex - Multilingual Accessible Learning Platform',
       category: 'EdTech Platform',
@@ -475,6 +686,30 @@ const Projects = () => {
       description: 'Full-stack movie platform with React frontend, Node.js/Express backend, and Android app. Backend provides RESTful APIs to fetch movies from TheMovieDB with pagination, caching, and response optimization. Manages user favorites, watchlists, and authentication using Firebase Admin SDK and JWT validation. React web frontend allows browsing, filtering by genre, searching, viewing cast/crew details, and managing favorites.',
       image: '/movie_explorer_website.png',
       link: 'https://github.com/Nawal-Shahid/movie-explorer-website?tab=readme-ov-file'
+    },
+    {
+      title: 'CMS – Content Management System',
+      category: 'Full Stack',
+      tech: 'MongoDB, Firebase, React, Node.js, Express, REST APIs, JWT, Role-Based Access Control',
+      description: 'Full-stack content management system designed to support scalable content creation, management, and publishing workflows with role-based access control. Implemented in two architectures: a MongoDB-based backend version and a Firebase-based serverless version, demonstrating flexibility across traditional and cloud-native systems. Enables administrators to manage articles, users, and media with secure authentication and structured content delivery for public-facing interfaces.',
+      image: '/cms.png',
+      link: '#'
+    },
+    {
+      title: 'ERP – Enterprise Resource Planning System',
+      category: 'Enterprise System / Full Stack',
+      tech: 'React, Node.js, Express, MongoDB/Firebase/SQL, REST APIs, JWT, Role-Based Access Control',
+      description: 'Production-grade enterprise resource planning system successfully delivered to a real-world client to support business operations and workflow management. Designed to streamline organizational processes through secure role-based access, structured data management, and modular architecture. Built with a focus on reliability, scalability, and production readiness, ensuring stable performance in a real operational environment.',
+      image: '/erp-system/image.png',
+      link: '#'
+    },
+    {
+      title: 'IntelliAI – AI-Powered Business Intelligence Platform',
+      category: 'AI / Data Science',
+      tech: 'Python, Streamlit, Pandas, NumPy, scikit-learn, LLM (Groq/Llama), Data Visualization',
+      description: 'AI-driven analytics platform that converts raw datasets into structured, actionable insights using automated data processing and machine learning techniques. Enables users to upload datasets and perform exploratory data analysis, statistical summarization, and visual analytics through an interactive dashboard. Integrates large language model capabilities to support natural language-based data exploration for non-technical users.',
+      image: '/intelli.gif',
+      link: 'https://github.com/Nawal-Shahid/IntelliAI/' 
     }
   ];
 
@@ -856,6 +1091,7 @@ export default function App() {
         <About />
         <Experience />
         <Projects />
+        <Certifications />
         <Skills />
         <Contact />
       </main>
