@@ -381,7 +381,7 @@ const Experience = () => {
     {
       company: 'Freelance Client Project',
       role: 'ERP System Developer',
-      period: '2024 – 2025',
+      period: '2026',
       description: 'Designed and delivered a production-ready Enterprise Resource Planning (ERP) system for a real-world client, streamlining daily business operations through centralized workflow management and role-based access control. Collaborated directly with stakeholders to gather requirements, translate business processes into technical solutions, and implement scalable system architecture. Developed secure modules for data management, user authentication, reporting, and operational tracking while ensuring reliability, maintainability, and performance in a live business environment. Successfully deployed the system and provided ongoing support for enhancements and future business requirements.',
       skills: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'Firebase', 'REST APIs', 'JWT Authentication']
     },
